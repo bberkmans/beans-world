@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTransitionNav } from "./PageTransition";
 
 type TimelineItem = {
   id: number;
@@ -22,7 +23,7 @@ const playfair = Playfair_Display({
 });
 
 export default function Home() {
-  
+  const { navigate } = useTransitionNav();  
   const sectionRef = useRef<HTMLElement | null>(null);
   const [activeItem, setActiveItem] = useState<TimelineItem | null>(null);
 
@@ -151,12 +152,12 @@ export default function Home() {
               Head to the art page to look at my art
             </p>
 
-            <Link
-              href="/art"
-              className="inline-block mt-8 text-white text-lg md:text-xl tracking-wide transition duration-200 hover:opacity-70 hover:translate-x-1"
+            <button
+              onClick={() => navigate("/art")}
+              className="inline-block mt-8 text-white text-lg md:text-xl tracking-wide transition duration-200 hover:opacity-70 hover:translate-x-1 cursor-pointer"
             >
               go to art →
-            </Link>
+            </button>
           </div>
 
           {/* Image placeholders */}
